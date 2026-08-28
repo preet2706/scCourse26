@@ -1,0 +1,16 @@
+{
+  "model": "mlp_scalars",
+  "features": "scalars",
+  "n_train": 50,
+  "n_test": 20,
+  "pearson_mean": 0.7807862189675797,
+  "pearson_sem": 0.03511215765262485,
+  "pearson_median": 0.8494376302626773,
+  "pearson_min": 0.3995764935862901,
+  "pearson_max": 0.9108458058920155,
+  "rmse_mean": 0.07141002687973662,
+  "rmse_sem": 0.00396023652039591,
+  "rmse_median": 0.06635375232803536,
+  "rmse_min": 0.05627604297904381,
+  "rmse_max": 0.13240743429701188
+}

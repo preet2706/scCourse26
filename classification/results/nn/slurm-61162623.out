@@ -1,0 +1,32 @@
+Loading features...
+train=(174664, 2000), test=(43667, 2000)
+Training...
+epoch   0  train_loss=0.1370  val_loss=0.0597
+epoch   1  train_loss=0.0407  val_loss=0.0601
+epoch   2  train_loss=0.0269  val_loss=0.0632
+epoch   3  train_loss=0.0174  val_loss=0.0758
+epoch   4  train_loss=0.0120  val_loss=0.0874
+epoch   5  train_loss=0.0097  val_loss=0.0880
+epoch   6  train_loss=0.0066  val_loss=0.0953
+epoch   7  train_loss=0.0050  val_loss=0.1086
+epoch   8  train_loss=0.0042  val_loss=0.1183
+Early stopping at epoch 8
+accuracy=0.9816  macro_f1=0.9810
+Computing permutation importance on test set (no native importances for NNs)...
+Done. Top 15 genes by permutation importance:
+       gene  perm_importance_mean  perm_importance_std
+0      GBP1              0.001942             0.000212
+1      IRF1              0.001577             0.000185
+2     ICAM1              0.000933             0.000136
+3      MT2A              0.000917             0.000124
+4      GBP2              0.000903             0.000162
+5      GBP4              0.000772             0.000121
+6    HSPA1A              0.000639             0.000064
+7     HLA-B              0.000636             0.000128
+8      IDO1              0.000634             0.000078
+9   TMEM158              0.000577             0.000137
+10   FKBP1A              0.000539             0.000139
+11    TEX29              0.000500             0.000161
+12   CLEC2B              0.000492             0.000156
+13    ZFAS1              0.000438             0.000159
+14     CD74              0.000425             0.000101

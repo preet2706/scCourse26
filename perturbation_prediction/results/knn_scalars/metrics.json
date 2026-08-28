@@ -1,0 +1,16 @@
+{
+  "model": "knn_scalars",
+  "features": "scalars",
+  "n_train": 50,
+  "n_test": 20,
+  "pearson_mean": 0.7703657814270171,
+  "pearson_sem": 0.03448014209068094,
+  "pearson_median": 0.8436044197289957,
+  "pearson_min": 0.40327332242343966,
+  "pearson_max": 0.8973373449353463,
+  "rmse_mean": 0.07303770397135004,
+  "rmse_sem": 0.0037430864436549843,
+  "rmse_median": 0.06921744871018919,
+  "rmse_min": 0.057036383461382574,
+  "rmse_max": 0.1337632677035834
+}

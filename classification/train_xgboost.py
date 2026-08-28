@@ -1,0 +1,80 @@
+import argparse
+import os
+import pickle
+import time
+
+import numpy as np
+from xgboost import XGBClassifier
+
+from data_prep import load_features, make_split
+from evaluate_utils import (
+    CLASSES,
+    compute_metrics,
+    cross_validate_report,
+    majority_class_baseline,
+    plot_confusion_matrix,
+    plot_roc_curves,
+    save_json,
+)
+
+
+def main(results_dir, n_estimators, n_jobs, seed):
+    os.makedirs(results_dir, exist_ok=True)
+
+    print("Loading features...")
+    X, y, _ = load_features()
+    X_train, X_test, y_train, y_test, cv = make_split(X, y, seed=seed)
+    print(f"train={X_train.shape}, test={X_test.shape}")
+
+    # XGBClassifier needs integer-encoded labels
+    label_to_int = {c: i for i, c in enumerate(CLASSES)}
+    int_to_label = np.array(CLASSES)
+    y_train_int = np.array([label_to_int[v] for v in y_train])
+    y_test_int = np.array([label_to_int[v] for v in y_test])
+
+    clf = XGBClassifier(
+        objective="multi:softprob", num_class=len(CLASSES), tree_method="hist",
+        n_estimators=n_estimators, n_jobs=n_jobs, random_state=seed,
+        eval_metric="mlogloss",
+    )
+
+    print("5-fold CV on training set...")
+    cv_report = cross_validate_report(clf, X_train, y_train_int, cv)
+    print(cv_report)
+
+    print("Fitting on full training set...")
+    t0 = time.time()
+    clf.fit(X_train, y_train_int)
+    fit_seconds = time.time() - t0
+
+    y_pred_int = clf.predict(X_test)
+    y_pred = int_to_label[y_pred_int]
+    y_proba = clf.predict_proba(X_test)  # already in CLASSES order (0,1,2)
+
+    metrics = compute_metrics(y_test, y_pred, y_proba)
+    metrics["cv"] = cv_report
+    metrics["baseline"] = majority_class_baseline(y_train, y_test)
+    metrics["fit_seconds"] = fit_seconds
+    metrics["model"] = "xgboost"
+    save_json(metrics, os.path.join(results_dir, "metrics.json"))
+    print(f"accuracy={metrics['accuracy']:.4f}  macro_f1={metrics['macro_f1']:.4f}")
+
+    plot_confusion_matrix(y_test, y_pred, CLASSES, os.path.join(results_dir, "confusion_matrix.png"),
+                           title="XGBoost")
+    plot_roc_curves(y_test, y_proba, CLASSES, os.path.join(results_dir, "roc_curves.png"),
+                     title="XGBoost ROC")
+
+    with open(os.path.join(results_dir, "model.pkl"), "wb") as f:
+        pickle.dump({"model": clf, "classes": CLASSES}, f)
+
+    print("Done.")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--results-dir", default="results/xgboost")
+    parser.add_argument("--n-estimators", type=int, default=300)
+    parser.add_argument("--n-jobs", type=int, default=-1)
+    parser.add_argument("--seed", type=int, default=0)
+    args = parser.parse_args()
+    main(args.results_dir, args.n_estimators, args.n_jobs, args.seed)

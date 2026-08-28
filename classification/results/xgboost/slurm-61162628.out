@@ -1,0 +1,24 @@
+Loading features...
+train=(174664, 2000), test=(43667, 2000)
+5-fold CV on training set...
+{'cv_macro_f1_mean': 0.9881727577786767, 'cv_macro_f1_std': 0.0006672717556804921, 'cv_macro_f1_scores': [0.988347452873045, 0.9880606335887808, 0.9893579280260739, 0.9875414621324042, 0.98755631227308]}
+Fitting on full training set...
+accuracy=0.9893  macro_f1=0.9889
+Computing permutation importance on test set...
+Done. Top 15 genes by permutation importance:
+        gene  perm_importance_mean  perm_importance_std
+0       IDO1              0.094859             0.001626
+1       GBP1              0.062992             0.001308
+2       CD74              0.018924             0.000507
+3       IRF1              0.009858             0.000302
+4     CXCL11              0.005959             0.000410
+5    HLA-DRA              0.005831             0.000296
+6     CXCL10              0.004742             0.000353
+7      HLA-B              0.004000             0.000315
+8       GBP4              0.002132             0.000247
+9   HLA-DRB1              0.002067             0.000307
+10      GBP2              0.001629             0.000213
+11       FN1              0.000678             0.000089
+12     CXCL9              0.000657             0.000132
+13    TUBA1B              0.000574             0.000135
+14     HSPB1              0.000495             0.000089

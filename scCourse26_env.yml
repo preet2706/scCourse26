@@ -1,0 +1,25 @@
+name: denbi
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - plotnine
+  - seaborn
+  - scikit-learn
+  - scipy
+  - scanpy
+  - statsmodels
+  - xgboost
+  - anndata
+  - leidenalg
+  - umap-learn
+  - gtfparse
+  - tqdm
+  - pip
+  - pip:
+    - --index-url https://download.pytorch.org/whl/cpu
+    - torch 
+    - torchvision

@@ -1,0 +1,15 @@
+CLAUDE.md
+
+# Data — raw and processed AnnData objects (large, regenerable from source)
+*.h5ad
+
+# Model checkpoints / serialised fitted estimators
+*.pkl
+*.pklz
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+*.npz
