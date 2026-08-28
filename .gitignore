@@ -13,3 +13,6 @@ CLAUDE.md
 *.onnx
 *.safetensors
 *.npz
+02_condititon_classification.ipynb
+03_perturbation_clustering.ipynb
+04_perturbation_prediction.ipynb
