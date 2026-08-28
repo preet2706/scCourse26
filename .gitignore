@@ -1,5 +1,3 @@
-CLAUDE.md
-
 # Data — raw and processed AnnData objects (large, regenerable from source)
 *.h5ad
 
@@ -15,4 +13,4 @@ CLAUDE.md
 *.npz
 
 # Notebooks
-*.ipynb
+archive/
