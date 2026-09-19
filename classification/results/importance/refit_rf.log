@@ -1,0 +1,16 @@
+Loading features...
+Refitting random forest on (174664, 2000) (single-core machines: expect 20-30 min)...
+  fitted in 70s, test accuracy 0.982618 (metrics.json: 0.982618)
+Saved to results/importance
+
+Top 15 by mean |coefficient| (Logistic regression):
+IDO1, HLA-B, CD74, HLA-DRA, CXCL10, HSPB1, CXCL11, CXCL9, PTGES, HLA-DRB1, GBP1, TUBA1B, FN1, FTH1, ANGPTL4
+
+Top 15 by impurity decrease (Random forest):
+CD74, GBP1, HLA-B, IDO1, IRF1, GBP2, HLA-DRB1, HLA-DRA, GBP4, HLA-DPA1, ICAM1, FN1, PMEPA1, CALD1, CLEC2B
+
+Top 15 by gain (XGBoost):
+GBP1, HLA-B, CD74, IDO1, CD7, HLA-DRA, IRF1, PTGES, GBP4, TUBA1B, FN1, TEX29, GBP2, CALD1, HLA-DRB1
+
+Top 15 by permutation importance (Neural network):
+GBP1, IRF1, ICAM1, MT2A, GBP2, GBP4, HSPA1A, HLA-B, IDO1, TMEM158, FKBP1A, TEX29, CLEC2B, ZFAS1, CD74

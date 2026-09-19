@@ -206,7 +206,7 @@ def fig_silhouette_selection(hier_scores, km_scores, leiden_sil_by_res, hier_k, 
     fig.savefig(f"{FIGDIR}/silhouette_selection.png", dpi=200, bbox_inches="tight")
     plt.close(fig)
 
-def fig_umap(sig_index, X_pca, all_labels, method_k):
+def fig_umap(sig_index, X_pca, all_labels, method_param):
     reducer = umap.UMAP(n_neighbors=15, min_dist=0.3, random_state=RANDOM_STATE)
     emb = reducer.fit_transform(X_pca)
     emb_df = pd.DataFrame(emb, index=sig_index, columns=["UMAP1", "UMAP2"])
@@ -219,7 +219,7 @@ def fig_umap(sig_index, X_pca, all_labels, method_k):
         lut = dict(zip(sorted(lab.unique()), cmap))
         colors = lab.map(lut)
         ax.scatter(emb_df["UMAP1"], emb_df["UMAP2"], c=colors, s=20, linewidths=0)
-        ax.set_title(f"{method} (k={method_k[method]})", fontsize=12)
+        ax.set_title(f"{method} ({method_param[method]})", fontsize=12)
         ax.set_xticks([])
         ax.set_yticks([])
         for spine in ax.spines.values():
@@ -258,14 +258,15 @@ def main():
     leiden_k = len(set(leiden_labels))
 
     all_labels = {"hierarchical": hier_labels, "kmeans": km_labels, "leiden": leiden_labels}
-    method_k = {"hierarchical": hier_k, "kmeans": km_k, "leiden": leiden_k}
+    # Leiden is parameterized by resolution, not k -- label it that way in plots
+    method_param = {"hierarchical": f"k={hier_k}", "kmeans": f"k={km_k}", "leiden": f"resolution={leiden_res}"}
 
     fig_silhouette_selection(hier_scores, km_scores, leiden_sil_by_res, hier_k, km_k, leiden_res)
     print("Saved silhouette_selection.png")
     print(f"  Chosen: hierarchical k={hier_k}, kmeans k={km_k}, leiden resolution={leiden_res} (k={leiden_k})")
 
     # 4. UMAP
-    fig_umap(genes, X_pca, all_labels, method_k)
+    fig_umap(genes, X_pca, all_labels, method_param)
     print("Saved umap_clustering_comparison.png")
 
     # Save cluster labels + selection scores

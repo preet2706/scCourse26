@@ -1,0 +1,18 @@
+Loading features...
+train=(174664, 2000) test=(43667, 2000)
+Fitting reference model on all genes...
+  all genes: {'accuracy': 0.9858245356905673, 'macro_f1': 0.9853296875473747}
+Control 1: label shuffle
+  seed 0: {'accuracy': 0.37224906680101677, 'macro_f1': 0.25898487124962233, 'shuffle_seed': 0}
+  seed 1: {'accuracy': 0.3692948908786956, 'macro_f1': 0.25571381304074664, 'shuffle_seed': 1}
+  seed 2: {'accuracy': 0.37053152266013234, 'macro_f1': 0.2573090407339474, 'shuffle_seed': 2}
+  seed 3: {'accuracy': 0.3692948908786956, 'macro_f1': 0.25530697739553254, 'shuffle_seed': 3}
+  seed 4: {'accuracy': 0.3738750085877207, 'macro_f1': 0.2603087286101922, 'shuffle_seed': 4}
+Control 2: gene subsets
+  k=  10  curated=0.9465  random mean=0.4525 (min 0.3978, max 0.6467)
+  k=  25  curated=0.9807  random mean=0.5471 (min 0.4061, max 0.8158)
+  k=  50  curated=0.9848  random mean=0.5855 (min 0.5132, max 0.6673)
+  k= 100  curated=0.9868  random mean=0.7244 (min 0.5607, max 0.9040)
+  k= 200  curated=0.9876  random mean=0.8601 (min 0.7782, max 0.9376)
+  k= 500  curated=0.9874  random mean=0.9527 (min 0.9334, max 0.9708)
+Done in 483s. Saved to results/sanity_checks
